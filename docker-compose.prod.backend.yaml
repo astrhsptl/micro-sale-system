@@ -3,7 +3,7 @@ services:
 
   backend:
     build: 
-      dockerfile: ./server/Dockerfile
+      dockerfile: ./src/server/Dockerfile
       context: .
     container_name: backend
     links:
