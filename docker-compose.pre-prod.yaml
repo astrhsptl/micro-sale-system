@@ -1,0 +1,116 @@
+version: '3.9'
+services:
+
+  traefik:
+    image: traefik:latest
+    restart: unless-stopped
+    container_name: traefik
+    networks:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.traefik.service=traefik"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    command: --api.insecure=true --providers.docker
+
+  redis:
+    image: redis
+    restart: always
+    labels:
+      - "traefik.enable=false"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+    ports:
+      - "6379:6379"
+
+  postgresql:
+    image: postgres:15.0
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: postgresql
+      POSTGRES_DB: postgresql
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.localhost`)"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+    restart: unless-stopped
+    networks:
+      - web
+    depends_on:
+      - traefik
+      - postgresql
+
+  backend:
+    build: 
+      dockerfile: ./server/Dockerfile
+      context: .
+    container_name: backend
+    links:
+      - postgresql:postgresql
+    depends_on:
+      - postgresql
+      - redis
+      - traefik
+      - pgadmin
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.backend.service=backend"
+      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - "traefik.http.services.backend.loadbalancer.server.port=4000"
+    command: >
+      sh -c " python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py collectstatic --noinput &&
+              celery -A server worker --loglevel=INFO --detach &&
+              gunicorn server.wsgi:application --bind 0.0.0.0:4000"
+    environment:
+      - SECRET_KEY=a)&tg!@-@liw2+v!_64!v1_o+2r%e3ufl#e!n*_ar5a$q=9n!p
+      - DEBUG=1
+      - DB_NAME=postgresql
+      - DB_USER=postgresql
+      - DB_PASSWORD=postgresql
+      - DB_HOST=postgresql
+      - DB_PORT=5432
+      - EMAIL=management.weblab@bk.ru
+      - EMAIL_HOST_PASSWORD=AvW2GXLLWtGvWwtSpL6e
+      - EMAIL_PORT=465
+      - REDIS_PORT=6379
+      - REDIS_HOST=redis://redis:6379/0
+    networks:
+      - web
+    ports:
+      - "4000:4000"
+
+volumes:
+  media_volume:
+  static_volume:
+  postgres_data:
+
+networks:
+  web:
+    external: true
