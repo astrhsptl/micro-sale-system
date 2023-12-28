@@ -284,3 +284,5 @@ SESSION_COOKIE_SECURE = False
 # Secure content settings
 
 SECURE_CONTENT_TYPE_NOSNIFF = False
+
+SWAGGER_SETTINGS = {"DEFAULT_AUTO_SCHEMA_CLASS":"server.config.CustomAutoSchema"}
