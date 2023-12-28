@@ -16,3 +16,5 @@ simplejwt
 whitenoise
 pylint
 Pillow
+setuptools
+ruff

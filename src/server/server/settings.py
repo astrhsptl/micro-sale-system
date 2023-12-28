@@ -1,6 +1,4 @@
 from os import path, getenv as env
-import time
-import socket
 from dotenv import load_dotenv
 
 from pathlib import Path
@@ -95,14 +93,26 @@ WSGI_APPLICATION = "server.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": env("DB_NAME"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASSWORD"),
+#         "HOST": env("DB_HOST"),
+#         "PORT": int( env("DB_PORT") ),
+#     }
+# }
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": int( env("DB_PORT") ),
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": 5432,
     }
 }
 
@@ -111,12 +121,6 @@ DATABASES = {
 # https://www.django-rest-framework.org
 
 REST_FRAMEWORK = {
-    # "DEFAULT_RENDERER_CLASSES": [
-    #     "rest_framework.renderers.JSONRenderer",
-    # ],
-    # "DEFAULT_PARSER_CLASSES": [
-    #     "rest_framework.parsers.JSONParser",
-    # ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "authsystem.backend.JWTAuthClass"
     ],
@@ -125,7 +129,6 @@ REST_FRAMEWORK = {
 
 # Auth settings
 AUTH_USER_MODEL = "authsystem.User" 
-# AUTHENTICATION_BACKENDS = ["authsystem.backend.JWTAuthClass"]
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",

@@ -78,7 +78,6 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-
     class Meta:
         indexes = [
             models.Index(fields=["id"], name="id_index"),
