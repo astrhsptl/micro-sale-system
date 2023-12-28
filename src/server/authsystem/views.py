@@ -1,13 +1,12 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 
 from services.authentication import UserAuthentication
 
 from .serializers import UserPresentationSerializer, UserRegisterSerializer
 
 class RegisterAPIView(GenericAPIView):
-    '''This api relise sign up on jwt architecture. Return  name, surname, email, is_superuser, is_staff '''
     serializer_class = UserRegisterSerializer
     permission_classes = (AllowAny, )
     presentation_serializer = UserPresentationSerializer

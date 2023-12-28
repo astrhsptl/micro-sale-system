@@ -15,15 +15,7 @@ class UserAuthentication:
             return self._serialize_user(user, self.presentaiton_serializer)
 
         return data.errors, status.HTTP_400_BAD_REQUEST
-    
 
-    def _get_tokens_for_user(self, user) -> dict:
-        '''Get django user object. Return access and refresh tokens'''
-        tokens = RefreshToken.for_user(user)
-        return {
-            'refresh': str(tokens),
-            'access': str(tokens.access_token),
-        }
     
     def _serialize_user(self, user, serializer):
-        return {**dict(serializer(user).data), **self._get_tokens_for_user(user)}, status.HTTP_200_OK
+        return {**dict(serializer(user).data)}, status.HTTP_200_OK
