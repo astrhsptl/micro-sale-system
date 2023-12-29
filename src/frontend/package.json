@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "start": "tcs",
-      "serve": "serve public -p 3000"
+    "watch": "tsc --watch",
+    "serve": "serve public -p 3000"
   },
   "keywords": [],
   "author": "",
