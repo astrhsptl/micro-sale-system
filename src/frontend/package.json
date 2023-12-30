@@ -1,17 +1,21 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "watch": "tsc --watch",
-    "serve": "serve public -p 3000"
+    "dev": "vite ./src",
+    "build": "tsc && vite build ./src/ --outDir ../build",
+    "preview": "vite preview",
+    "prod": "serve build -p 3000"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.10"
+  },
   "dependencies": {
+    "path": "^0.12.7",
     "serve": "^14.2.1",
-    "typescript": "^5.3.3"
+    "vite-tsconfig-paths": "^4.2.3"
   }
 }
