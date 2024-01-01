@@ -1,7 +1,6 @@
 import uuid
 
 from django.db import models
-from django.urls import reverse_lazy
 from django.contrib.auth.models import (
 	AbstractBaseUser, BaseUserManager,
 )
@@ -9,12 +8,17 @@ from django.contrib.auth.models import (
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, email, password=None, **other_fields):
         if email is None:
-            raise TypeError('Users must have an email address.')
+            raise TypeError("Users must have an email address.")
+
 
         user = self.model(email=self.normalize_email(email))
-        user.username = username
+        
+        for field, value in other_fields.items():
+            if hasattr(user, field):
+                setattr(user, field, value)
+
         user.set_password(password)
         user.save()
 
@@ -22,7 +26,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, email, password):
         if password is None:
-            raise TypeError('Superusers must have a password.')
+            raise TypeError("Superusers must have a password.")
 
         user = self.create_user(username, email, password)
         user.is_superuser = True
@@ -38,23 +42,32 @@ class User(AbstractBaseUser):
         db_index=True,
         default=uuid.uuid4,
         editable=False)
+    
+    # base information
+    last_login = None
+
     first_name = models.CharField(verbose_name="First name", max_length=50, blank=False)
     last_name = models.CharField(verbose_name="Last name", max_length=50, blank=False)
+    
+    # in common information
+    avatar = models.ImageField(verbose_name="Avatar", blank=True, upload_to="user/avatar")
     phone = models.CharField(verbose_name="Phone", max_length=30, blank=False)
     email = models.EmailField(verbose_name="Email", max_length=100, blank=False, unique=True)
-    username = models.CharField(verbose_name="User name", max_length=50,blank=False, unique=True)
-    avatar = models.ImageField(upload_to="avatar/user_avatar",null=True,  blank=True, default="avatar/user_avatar/avatar.jpg")
+    balance = models.FloatField(verbose_name="Balance", blank=False, default=0)
+
+    # permission information
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_seller = models.BooleanField(default=False)
 
     # Auth settings
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [
-        'email'
+        "first_name", "last_name", "phone"
     ]
 
-    objects = UserManager()
+    objects: UserManager = UserManager()
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
@@ -65,10 +78,7 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def get_absolute_url(self,):
-        return reverse_lazy('moder_user_detail', kwargs={'id': self.id})
-
     class Meta:
         indexes = [
-            models.Index(fields=['id'], name='id_index'),
+            models.Index(fields=["id"], name="id_index"),
         ]

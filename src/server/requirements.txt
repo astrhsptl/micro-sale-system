@@ -14,4 +14,4 @@ PyJWT
 redis
 simplejwt
 whitenoise
-pylint
+Pillow

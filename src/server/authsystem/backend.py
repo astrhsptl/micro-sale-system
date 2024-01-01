@@ -1,7 +1,7 @@
 import jwt
 
 from django.conf import settings
-from django.contrib.auth.hashers import check_password, make_password
+from rest_framework import status
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.authentication import (
     get_authorization_header
@@ -25,6 +25,16 @@ class JWTAuthClass(BaseAuthentication):
             return self._auth_by_username(username, password)
 
         return None, False
+
+    @staticmethod
+    def register(request, serializer, presentaiton_serializer=None, **kwargs):
+        data = serializer(data=request.data)
+        if data.is_valid():
+            user = data.save()
+            return {**dict(presentaiton_serializer(user).data)}, status.HTTP_200_OK
+
+        return data.errors, status.HTTP_400_BAD_REQUEST
+
 
     def _auth_by_jwt(self, headers):
         auth_data = headers.decode('utf-8')
