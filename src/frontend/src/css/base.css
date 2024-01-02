@@ -47,6 +47,17 @@ table {
     src: url(/fonts/Montserrat-Regular.ttf) format("truetype");
 }
 
+#the-container__main {
+    display: grid;
+    min-height: 100vh;
+    height: 100%;
+    position: relative;
+}
+
+main {
+    height: 100%;
+}
+
 /* classes */
 
 .container {
@@ -148,7 +159,8 @@ header {
 }
 
 #navigation-sub {
-    display: none;    
+    display: none;
+    background-color: #FFF;
 }
 
 .navigation-sub__home {
@@ -196,10 +208,16 @@ header {
     #navigation-sub {
         display: block;
         position: absolute;
+        background-color: #fff;
+        z-index: 999;
         bottom: 0;
         height: 62px;
         width: 100%;
         min-width: 100%;
+    }
+
+    #footer {
+        margin-bottom: 62px;
     }
 
     .container-navigation {
@@ -207,5 +225,135 @@ header {
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;        
+    }
+}
+
+/* footer */
+
+#footer {
+    height: min-content;
+    align-self: end;
+}
+
+.footer-arrow__down {
+    display: none;
+}
+
+.block-info-title {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.block-info-data {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.block-info-link {
+    text-decoration: none;
+}
+
+.block-info-link:focus {
+    text-decoration: none;
+}
+
+.footer-github {
+    width: 149px;
+    height: 142px;
+}
+
+.footer-confirm-data {
+    color: #000;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 12px */
+}
+
+.container-footer {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.github-data-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.footer-confirm {
+    text-align: center;
+}
+
+@media (max-width: 970px) {
+    .block-info-title {
+        font-size: 16px;
+    }
+
+    .block-info-data {
+        font-size: 12px;
+    }
+
+    .footer-github {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 750px) {
+    .footer-arrow__down-rotated {
+        transform: rotate(180deg);
+    }
+
+    .block-info-title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container-footer {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .footer-block-link__hidden {
+        position: absolute;
+        visibility: hidden;
+        transform: translateY(-50px);
+        transition: transform .3s cubic-bezier(1,0,1,.5) 0s;
+    }
+
+    .footer-block-link__opened {
+        display: block;
+        visibility: visible;
+        transform: translateY(0);
+        transition: transform .3s cubic-bezier(0,1,.5,1) 0s;
+    }
+    
+    .container-footer__sub {
+        padding: 20px 0;
+        z-index: 2;
+    }
+
+    .github-data-container {
+        display: none;
+    }
+
+    .footer-arrow__down {
+        display: inline;
+        height: 16px;
+        width: 16px;
+        will-change: contents;
+        transition: all 0.3s ease-out;
     }
 }
