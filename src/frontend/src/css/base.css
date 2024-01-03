@@ -49,13 +49,15 @@ table {
 
 #the-container__main {
     display: grid;
+    grid-template-rows: 118px calc(100% - 118px - 174px) 174px;
     min-height: 100vh;
     height: 100%;
     position: relative;
 }
 
-main {
+#main {
     height: 100%;
+    align-self: start;
 }
 
 /* classes */
@@ -65,6 +67,24 @@ main {
     height: 100%;
 
     margin: 0 auto;
+}
+
+.modal {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 5px;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#switch-language {
+    width: 200px;
+    height: 200px;
 }
 
 /* header */
@@ -127,6 +147,16 @@ header {
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.language-switcher:hover {
+    cursor: pointer;
 }
 
 .link-login__header {
@@ -145,7 +175,6 @@ header {
 }
 
 .button-signin__header {
-    width: 105px;
     height: 37px;
     border-radius: 8px;
     background: #000;
@@ -156,6 +185,8 @@ header {
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
+
+    padding: 5px 20px;
 }
 
 #navigation-sub {
@@ -184,8 +215,8 @@ header {
 }
 
 
-@media (max-width: 1050px) {
-    header {
+@media (max-width: 1200px) {
+   header {
         height: 64px;
     }
     
@@ -207,7 +238,7 @@ header {
 
     #navigation-sub {
         display: block;
-        position: absolute;
+        position: fixed;
         background-color: #fff;
         z-index: 999;
         bottom: 0;
@@ -216,15 +247,15 @@ header {
         min-width: 100%;
     }
 
-    #footer {
-        margin-bottom: 62px;
-    }
-
     .container-navigation {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;        
+    }
+
+    #the-container__main {
+        grid-template-rows: 64px auto min-content 62px;
     }
 }
 
@@ -232,7 +263,6 @@ header {
 
 #footer {
     height: min-content;
-    align-self: end;
 }
 
 .footer-arrow__down {
@@ -341,8 +371,15 @@ header {
     }
     
     .container-footer__sub {
-        padding: 20px 0;
         z-index: 2;
+    }
+
+    .block-info-title {
+        padding: 20px 0;
+    }
+
+    .block-info-data {
+        padding: 3px 0;
     }
 
     .github-data-container {

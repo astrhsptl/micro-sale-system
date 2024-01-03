@@ -1,8 +1,14 @@
+import { manager } from "..";
 import { Footer} from "../components/Footer";
-import { Header } from "../components/Header";
-import { SubHeader } from "../components/SubHeader";
+import { HeaderWithSubHeader } from "../components/HeaderWithSubHeader";
 
+const language = manager.getStatePosition("language");
+const dictionary = manager.getStatePosition("dictionary");
 
-Header();
-SubHeader();
-Footer();
+HeaderWithSubHeader(language, dictionary);
+Footer(dictionary);
+
+const a = document.getElementById("most-popular");
+
+a!.innerText = "asd"
+console.log(a?.innerText);
