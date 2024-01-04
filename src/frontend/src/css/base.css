@@ -62,6 +62,42 @@ table {
 
 /* classes */
 
+#container-category__switchable {
+    display: flex;
+    max-width: 20%;
+    flex-flow: row nowrap;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#container-category__switchable::-webkit-scrollbar {
+    display: none;
+  }
+  
+
+.switcher-category {
+    color: #000;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.switcher-category__current {
+    border-bottom: 2px solid black;
+    font-weight: 700;
+}
+
+.container__main {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
 .container {
     width: 80%;
     height: 100%;

@@ -18,7 +18,7 @@ export const Footer = (dictionary: AvailableDictionaryType) => {
         </div>
 
         <div class="container-footer__sub">
-            <div class="block-info-title">${dictionary.aboutCreator} <img src="./svg/arrow_down.svg" alt="" class="footer-arrow__down" /></div>
+            <div class="block-info-title">${dictionary.aboutProject} <img src="./svg/arrow_down.svg" alt="" class="footer-arrow__down" /></div>
             <ul class="footer-block-link footer-block-link__hidden">
                 <a href="https://github.com/astrhsptl/micro-sale-system#%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B" class="block-info-link"><li class="block-info-data">${dictionary.projectDescription}</li></a>
                 <a href="https://miro.com/app/board/uXjVN-4E00I=/?share_link_id=603069348521" class="block-info-link"><li class="block-info-data">${dictionary.techStack}</li></a>
