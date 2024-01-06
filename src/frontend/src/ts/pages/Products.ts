@@ -14,6 +14,7 @@ const dictionary = manager.getStatePosition("dictionary");
 const Products = async () => {
     const fetchMaster = new FetchController("category/");
     const fetchControllerProducts = new FetchController("product/");
+
     let categories: CategoryPluralInterface = await fetchMaster.fetchList();
     let products: Array<ProductInterface> = await fetchControllerProducts.fetchList();
     manager.register("categories", categories.results);

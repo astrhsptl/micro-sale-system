@@ -10,8 +10,10 @@ interface CategoryTitle{
 }
 
 export const CategorySwitcher = async (manager: StateManager) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryId = urlParams.get('category');
     let categoryArray = manager.getStatePosition("categories") as Array<CategoryTitle>;
-    let currentCategory = manager.getStatePosition("currentCategory");
+    let currentCategory = manager.getStatePosition("currentCategory") || categoryId;
     let fetchControllerProducts = new FetchController("product/");
     
     if (!currentCategory) {
