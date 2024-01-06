@@ -26,22 +26,23 @@ class Category(models.Model):
     background = models.ImageField(blank=True, upload_to="category/background")
 
 
-class Product(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=63, blank=False, unique=True)
-    cost = models.FloatField(default=False, blank=False)
-    seller_id = models.ForeignKey(Seller, verbose_name="seller_id", on_delete=models.CASCADE)
-    category_id = models.ForeignKey(Category, verbose_name="category_id", on_delete=models.CASCADE)
-
-
-class ProductPhoto(models.Model):
+class CustomPhoto(models.Model):
     id = models.UUIDField(
         primary_key=True,
         db_index=True,
         default=uuid4,
         editable=False)
     image = models.ImageField(blank=False, upload_to="product_photo/image")
-    product_id = models.ForeignKey(Product, verbose_name="product_id", on_delete=models.CASCADE)
+
+
+class Product(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=63, blank=False, unique=True)
+    cost = models.FloatField(default=False, blank=False)
+    seller_id = models.ForeignKey(Seller, verbose_name="seller_id", on_delete=models.CASCADE)
+    category_id = models.ForeignKey(Category, verbose_name="category_id", on_delete=models.CASCADE)
+    preview = models.ImageField(blank=True, upload_to="product/preview")
+    photos = models.ManyToManyField(to=CustomPhoto)
 
 
 class ProductCharacteristic(models.Model):
