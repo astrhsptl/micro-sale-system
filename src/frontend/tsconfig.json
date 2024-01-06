@@ -8,11 +8,6 @@
 
     /* Compiler */
     "outDir": "./src/js",
-    "baseUrl": "./",
-    "paths": {
-        "@/*": ["src/*"]
-    },
-    "types": ["vite/client"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

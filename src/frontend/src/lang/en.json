@@ -1,0 +1,25 @@
+{
+    "login": "Login",
+    "signIn": "Sign in",
+    "homePage": "Home",
+    "productsPage": "Products",
+
+    "mostPopular": "Most popular",
+    
+    "aboutCreator": "About creator",
+    "aboutProject": "About project",
+    "projectDescription": "Description",
+    "techStack": "Tech stack",
+    "projectDesign": "Design",
+    "systemAnalytic": "Sys. analytic",
+    "projectRepository": "Repository",
+
+    "aboutPlatform": "About platform",
+    "howToBuy": "How to buy?",
+    "howDelivery": "How the delivery takes place?",
+    "howPayment": "How the payment is made?",
+
+    "aboutElse": "About else",
+    "projectGithub": "Project github",
+    "userAgreement": "User agreement"
+}
