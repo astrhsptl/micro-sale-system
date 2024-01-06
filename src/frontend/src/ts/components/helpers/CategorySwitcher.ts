@@ -1,5 +1,7 @@
+import FetchController from "../../api/FetchController";
 import { StateManager } from "../../state/state";
 import { render } from "../../utils/render";
+import { ProductsRender } from "./ProductsRender";
 
 interface CategoryTitle{
     id: string | number;
@@ -10,7 +12,8 @@ interface CategoryTitle{
 export const CategorySwitcher = async (manager: StateManager) => {
     let categoryArray = manager.getStatePosition("categories") as Array<CategoryTitle>;
     let currentCategory = manager.getStatePosition("currentCategory");
-    
+    let fetchController = new FetchController("product/");
+
     if (!currentCategory) {
         manager.register("currentCategory", categoryArray[0].id);
         currentCategory = categoryArray[0].id;
@@ -26,6 +29,10 @@ export const CategorySwitcher = async (manager: StateManager) => {
     });
 
     render("container-category__switchable", content);
+
+    let products = await fetchController.fetchList(1, 50, {category_id: currentCategory});
+    await ProductsRender(products.results);
+
 
     let mouseDown = false;
     let startX, scrollLeft;
@@ -55,10 +62,13 @@ export const CategorySwitcher = async (manager: StateManager) => {
     });
 
     categoryList.forEach(c => {
-        c.addEventListener("click", (e: Event) => {
+        c.addEventListener("click", async (e: Event) => {
             const target = e.target as HTMLElement;
             manager.register("currentCategory", target.dataset.id!);
             CategorySwitcher(manager);
+            let products = await fetchController.fetchList(1, 50, {category_id: target.dataset.id!});
+            products = products.results;
+            await ProductsRender(products);
         })
     });
 };
