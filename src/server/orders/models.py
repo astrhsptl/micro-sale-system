@@ -12,17 +12,7 @@ class Cart(models.Model):
         default=uuid4,
         editable=False)
     user_id = models.ForeignKey(User, verbose_name="user_id", on_delete=models.CASCADE)
-
-
-class ProductCartAssociation(models.Model):
-    id = models.UUIDField(
-        primary_key=True,
-        db_index=True,
-        default=uuid4,
-        editable=False)
-    cart_id = models.ForeignKey(Cart, verbose_name="cart_id", on_delete=models.CASCADE, related_name="product_cart_association")
-    product_id = models.ForeignKey(Product, verbose_name="product_id", on_delete=models.CASCADE, related_name="product_cart_association")
-    quantity = models.PositiveIntegerField(default=1)
+    products = models.ManyToManyField(Product)
 
 
 class Order(models.Model):
