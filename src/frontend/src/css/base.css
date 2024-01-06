@@ -67,6 +67,20 @@ table {
 
 /* classes */
 
+
+#most-popular {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+
+    height: min-content;
+
+    margin-bottom: 40px;
+}
+
 .arrow-link__link {
     display: flex;
     gap: 5px;
@@ -276,8 +290,12 @@ header {
 
 
 @media (max-width: 1200px) {
-   header {
+    header {
         height: 64px;
+    }
+
+    #most-popular {
+        font-size: 20px;
     }
     
     .container-header {
@@ -340,6 +358,7 @@ header {
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
+    user-select: none;
 }
 
 .block-info-data {

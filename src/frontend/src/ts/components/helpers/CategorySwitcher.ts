@@ -12,8 +12,8 @@ interface CategoryTitle{
 export const CategorySwitcher = async (manager: StateManager) => {
     let categoryArray = manager.getStatePosition("categories") as Array<CategoryTitle>;
     let currentCategory = manager.getStatePosition("currentCategory");
-    let fetchController = new FetchController("product/");
-
+    let fetchControllerProducts = new FetchController("product/");
+    
     if (!currentCategory) {
         manager.register("currentCategory", categoryArray[0].id);
         currentCategory = categoryArray[0].id;
@@ -30,7 +30,7 @@ export const CategorySwitcher = async (manager: StateManager) => {
 
     render("container-category__switchable", content);
 
-    let products = await fetchController.fetchList(1, 50, {category_id: currentCategory});
+    let products = await fetchControllerProducts.fetchList(1, 50, {category_id: currentCategory});
     await ProductsRender(products.results);
 
 
@@ -66,7 +66,7 @@ export const CategorySwitcher = async (manager: StateManager) => {
             const target = e.target as HTMLElement;
             manager.register("currentCategory", target.dataset.id!);
             CategorySwitcher(manager);
-            let products = await fetchController.fetchList(1, 50, {category_id: target.dataset.id!});
+            let products = await fetchControllerProducts.fetchList(1, 50, {category_id: target.dataset.id!});
             products = products.results;
             await ProductsRender(products);
         })

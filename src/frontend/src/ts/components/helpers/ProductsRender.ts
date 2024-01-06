@@ -6,7 +6,7 @@ export const ProductsRender = async (products: Array<ProductInterface>)=> {
     let content = "";
     
     products.forEach(product => {
-        content += ProductCard(product.preview, product.name, product.cost)
+        content += ProductCard(product)
     })
     render("container-product", content)
 }
