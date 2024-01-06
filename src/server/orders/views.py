@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 
-from .models import Order, Cart
-from .serializers import OrderSerializer, CartSerializer 
+from .models import Order, Cart, ProductQuantity
+from .serializers import OrderSerializer, CartSerializer, ProductQuantitySerializer
 
 from services import StandardResultsSetPagination
 
@@ -23,3 +23,12 @@ class CartViewSet(ModelViewSet):
     filter_backends = [SearchFilter]
     search_fields = ["id", "user_id"]
     tags = ["Cart"]
+
+
+class ProductQuantityViewSet(ModelViewSet):
+    queryset = ProductQuantity.objects.all()
+    serializer_class = ProductQuantitySerializer
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [SearchFilter]
+    search_fields = ["id", "cart_id", "product_id", "quantity"]
+    tags = ["Product quantity"]
