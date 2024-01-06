@@ -33,7 +33,7 @@ class CategoryViewSet(ModelViewSet):
     tags = ["Category"]
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ["id", "title", "description", "background",]
-    filterset_fields = ["id", "title", "description", "background",]
+    filterset_fields = ["id", "title", "description",]
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
@@ -58,4 +58,4 @@ class CustomPhotoViewSet(ModelViewSet):
     pagination_class = StandardResultsSetPagination
     tags = ["Product Photo"]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["id", "image", "product_id",]
+    filterset_fields = ["id",]
