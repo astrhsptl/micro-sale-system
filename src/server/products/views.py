@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import (
     Seller, Category,
@@ -20,8 +21,9 @@ class SellerViewSet(ModelViewSet):
     serializer_class = SellerSerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Seller"]
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ["id", "description", "address", "tin",]
+    filterset_fields = ["id", "description", "address", "tin",]
 
 
 class CategoryViewSet(ModelViewSet):
@@ -29,29 +31,31 @@ class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Category"]
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ["id", "title", "description", "background",]
+    filterset_fields = ["id", "title", "description", "background",]
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Product"]
-    filter_backends = [SearchFilter]
-    search_fields = ["id", "name", "cost", "seller_id", "category_id"]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ["id", "name", "cost",]
+    filterset_fields = ["id", "name", "cost", "seller_id", "category_id"]
 
 class ProductCharacteristicViewSet(ModelViewSet):
     queryset = ProductCharacteristic.objects.all()
     serializer_class = ProductCharacteristicSerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Product Characteristic"]
-    filter_backends = [SearchFilter]
-    search_fields = ["id", "title", "value", "product_id",]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    filterset_fields = ["id", "title", "value", "product_id",]
 
 class CustomPhotoViewSet(ModelViewSet):
     queryset = CustomPhoto.objects.all()
     serializer_class = CustomPhotoSerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Product Photo"]
-    filter_backends = [SearchFilter]
-    search_fields = ["id", "image", "product_id",]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["id", "image", "product_id",]

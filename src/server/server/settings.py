@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # second part
     "corsheaders",
     "whitenoise",
+    'django_filters',
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
@@ -124,6 +125,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "authsystem.backend.JWTAuthClass"
     ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 

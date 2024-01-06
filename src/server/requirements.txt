@@ -15,3 +15,4 @@ redis
 simplejwt
 whitenoise
 Pillow
+django-filter
