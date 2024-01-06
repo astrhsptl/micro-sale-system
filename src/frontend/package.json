@@ -1,17 +1,29 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-      "start": "tcs",
-      "serve": "serve public -p 3000"
+    "dev": "vite ./src",
+    "build": "tsc && vite build ./src/ --outDir ../build",
+    "preview": "vite preview",
+    "prod": "serve build -p 3000"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "eslint": "^8.56.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
+  },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "axios": "^1.6.4",
+    "path": "^0.12.7",
     "serve": "^14.2.1",
-    "typescript": "^5.3.3"
+    "vite-tsconfig-paths": "^4.2.3"
   }
 }
