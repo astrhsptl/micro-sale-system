@@ -14,8 +14,8 @@ class OrderViewSet(ModelViewSet):
     pagination_class = StandardResultsSetPagination
     tags = ["Order"]
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    search_fields = ["id", "cart_id", "stage", "is_called", "products"]
-    filterset_fields = ["id", "cart_id", "stage", "is_called", "products"]
+    search_fields = ["id", "cart_id", "stage", "is_called"]
+    filterset_fields = ["id", "cart_id", "stage", "is_called"]
 
 
 class CartViewSet(ModelViewSet):
