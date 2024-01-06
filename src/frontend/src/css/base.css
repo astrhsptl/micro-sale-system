@@ -1,0 +1,462 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    height: 100vh;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(/fonts/Montserrat-Regular.ttf) format("truetype");
+}
+
+#the-container__main {
+    display: grid;
+    grid-template-rows: 118px calc(100% - 118px - 174px) 174px;
+    min-height: 100vh;
+    height: 100%;
+    position: relative;
+}
+
+#main {
+    height: 100%;
+    align-self: start;
+}
+
+/* classes */
+
+#container-category__switchable {
+    display: flex;
+    max-width: 80%;
+    flex-flow: row nowrap;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    gap: 10px;
+}
+
+#container-category__switchable::-webkit-scrollbar {
+    display: none;
+}
+
+.switcher-category {
+    color: #000;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    user-select: none;
+    text-wrap: nowrap;
+    overflow-wrap: normal
+}
+
+.switcher-category__current {
+    border-bottom: 2px solid black;
+    font-weight: 700;
+}
+
+.container__main {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+
+    margin: 0 auto;
+}
+
+.modal {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 5px;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#switch-language {
+    width: 200px;
+    height: 200px;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    min-width: 100%;
+    height: 118px;
+}
+
+.container-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);    
+}
+
+.container-logotype {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-button__link {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5%;
+}
+
+.container-button__functional {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 5%;
+}
+
+.logotype {
+    height: 72px;
+    width: 72px;
+}
+
+.header-link {
+    font-family: Montserrat;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    text-decoration: none;
+}
+
+.language-switcher {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.language-switcher:hover {
+    cursor: pointer;
+}
+
+.link-login__header {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    text-decoration: none;
+}
+
+.button-cart {
+    width: 49px;
+    height: 44px;
+}
+
+.button-signin__header {
+    height: 37px;
+    border-radius: 8px;
+    background: #000;
+
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+
+    padding: 5px 20px;
+}
+
+#navigation-sub {
+    display: none;
+    background-color: #FFF;
+}
+
+.navigation-sub__home {
+    width: 49px;
+    height: 39px;
+}
+
+.navigation-sub__products {
+    width: 49px;
+    height: 39px;
+} 
+
+.navigation-sub__cart {
+    width: 49px;
+    height: 39px;
+}
+
+.navigation-sub__order {
+    width: 49px;
+    height: 39px;
+}
+
+
+@media (max-width: 1200px) {
+   header {
+        height: 64px;
+    }
+    
+    .container-header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logotype {
+        width: 34px;
+        height: 37px;
+    }
+
+    .container-button__functional, .header-button__link {
+        display: none;
+    }
+
+    #navigation-sub {
+        display: block;
+        position: fixed;
+        background-color: #fff;
+        z-index: 999;
+        bottom: 0;
+        height: 62px;
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .container-navigation {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;        
+    }
+
+    .switcher-category {
+        font-size: 18px;
+    }
+
+    #the-container__main {
+        grid-template-rows: 64px auto min-content 62px;
+    }
+}
+
+/* footer */
+
+#footer {
+    height: min-content;
+}
+
+.footer-arrow__down {
+    display: none;
+}
+
+.block-info-title {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+.block-info-data {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.block-info-link {
+    text-decoration: none;
+}
+
+.block-info-link:focus {
+    text-decoration: none;
+}
+
+.footer-github {
+    width: 149px;
+    height: 142px;
+}
+
+.footer-confirm-data {
+    color: #000;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 12px */
+}
+
+.container-footer {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.github-data-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.footer-confirm {
+    text-align: center;
+}
+
+@media (max-width: 970px) {
+    .block-info-title {
+        font-size: 16px;
+    }
+
+    .block-info-data {
+        font-size: 12px;
+    }
+
+    .footer-github {
+        width: 80px;
+        height: 80px;
+    }
+
+    #container-category__switchable {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 750px) {
+    .footer-arrow__down-rotated {
+        transform: rotate(180deg);
+    }
+
+    .block-info-title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container-footer {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .footer-block-link__hidden {
+        position: absolute;
+        visibility: hidden;
+        transform: translateY(-50px);
+        transition: transform .3s cubic-bezier(1,0,1,.5) 0s;
+    }
+
+    .footer-block-link__opened {
+        display: block;
+        visibility: visible;
+        transform: translateY(0);
+        transition: transform .3s cubic-bezier(0,1,.5,1) 0s;
+    }
+    
+    .container-footer__sub {
+        z-index: 2;
+    }
+
+    .block-info-title {
+        padding: 20px 0;
+    }
+
+    .block-info-data {
+        padding: 3px 0;
+    }
+
+    .github-data-container {
+        display: none;
+    }
+
+    .footer-arrow__down {
+        display: inline;
+        height: 16px;
+        width: 16px;
+        will-change: contents;
+        transition: all 0.3s ease-out;
+    }
+
+    .navigation-sub__home, .navigation-sub__products,
+    .navigation-sub__cart, .navigation-sub__order{
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+@media (max-width: 650px) {
+    #container-category__switchable {
+        max-width: 250px;
+    }
+}

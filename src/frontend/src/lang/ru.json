@@ -1,0 +1,25 @@
+{
+    "login": "Вход",
+    "signIn": "Регистрация",
+    "homePage": "Главная",
+    "productsPage": "Товары",
+
+    "mostPopular": "Самые популярные",
+    
+    "aboutCreator": "О создателе",
+    "aboutProject": "О проекте",
+    "projectDescription": "Описание",
+    "techStack": "Стэк",
+    "projectDesign": "Дизайн",
+    "systemAnalytic": "Сис. аналитика",
+    "projectRepository": "Репозиторий",
+
+    "aboutPlatform": "О платформе",
+    "howToBuy": "Как купить?",
+    "howDelivery": "Как происходит доставка?",
+    "howPayment": "Как происходит оплата?",
+
+    "aboutElse": "О чем-то еще",
+    "projectGithub": "Github проекта",
+    "userAgreement": "Пользовательское соглашение"
+}
