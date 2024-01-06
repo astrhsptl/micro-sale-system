@@ -18,3 +18,4 @@ pylint
 Pillow
 setuptools
 ruff
+django-filter

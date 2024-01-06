@@ -45,24 +45,6 @@ services:
     ports:
       - "5432:5432"
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=web"
-      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.localhost`)"
-      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
-    restart: unless-stopped
-    networks:
-      - web
-    depends_on:
-      - traefik
-      - postgresql
-
   backend:
     build: 
       dockerfile: ./src/server/Dockerfile
@@ -74,7 +56,6 @@ services:
       - postgresql
       - redis
       - traefik
-      - pgadmin
     restart: always
     labels:
       - "traefik.enable=true"
