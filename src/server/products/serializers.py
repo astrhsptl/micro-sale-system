@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import (
     Seller, Category,
     Product, ProductCharacteristic,
-    ProductPhoto
+    CustomPhoto
 )
 
 
@@ -31,7 +31,7 @@ class ProductCharacteristicSerializer(serializers.ModelSerializer):
         fields = ("__all__")
 
 
-class ProductPhotoSerializer(serializers.ModelSerializer):
+class CustomPhotoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductPhoto
+        model = CustomPhoto
         fields = ("__all__")

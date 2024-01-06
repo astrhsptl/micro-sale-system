@@ -9,7 +9,7 @@ djangorestframework
 djangorestframework-simplejwt
 drf-yasg
 gunicorn
-psycopg2-binary
+psycopg2
 PyJWT
 redis
 simplejwt

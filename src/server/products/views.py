@@ -4,12 +4,12 @@ from rest_framework.filters import SearchFilter
 from .models import (
     Seller, Category,
     Product, ProductCharacteristic,
-    ProductPhoto
+    CustomPhoto
 )
 from .serializers import (
     SellerSerializer, CategorySerializer,
     ProductSerializer, ProductCharacteristicSerializer,
-    ProductPhotoSerializer
+    CustomPhotoSerializer
 )
 
 from services import StandardResultsSetPagination
@@ -48,9 +48,9 @@ class ProductCharacteristicViewSet(ModelViewSet):
     filter_backends = [SearchFilter]
     search_fields = ["id", "title", "value", "product_id",]
 
-class ProductPhotoViewSet(ModelViewSet):
-    queryset = ProductPhoto.objects.all()
-    serializer_class = ProductPhotoSerializer
+class CustomPhotoViewSet(ModelViewSet):
+    queryset = CustomPhoto.objects.all()
+    serializer_class = CustomPhotoSerializer
     pagination_class = StandardResultsSetPagination
     tags = ["Product Photo"]
     filter_backends = [SearchFilter]
