@@ -42,7 +42,7 @@ class Product(models.Model):
     seller_id = models.ForeignKey(Seller, verbose_name="seller_id", on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category, verbose_name="category_id", on_delete=models.CASCADE)
     preview = models.ImageField(blank=True, upload_to="product/preview")
-    photos = models.ManyToManyField(to=CustomPhoto)
+    photos = models.ManyToManyField(to=CustomPhoto, blank=True)
 
 
 class ProductCharacteristic(models.Model):
