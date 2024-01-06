@@ -1,11 +1,14 @@
 import { insertableRender } from '../utils/render'
+import { ProductInterface } from "../interfaces/ProductInterfaces";
 
-export const ProductCard = (img: string, title: string, price: number): string => {
+export const ProductCard = (product: ProductInterface): string => {
     return  insertableRender(`
+    <a href="/product/?id=${product.id}" class="product-link">
     <div class="container-card-product">
-        <img src="${img}" alt="" class="product-image">
-        <p class="product-title">${title}</p>
-        <p class="product-price">${price}$</p>
+        <img src="${product.preview}" alt="" class="product-image">
+        <p class="product-title">${product.name}</p>
+        <p class="product-price">${product.cost}$</p>
     </div>
+    </a>
 `)
 }

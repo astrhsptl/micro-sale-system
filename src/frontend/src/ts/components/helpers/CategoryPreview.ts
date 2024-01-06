@@ -16,7 +16,7 @@ export const CategoryPreview = async (categories: Array<CategoryInterface>) => {
             >
                 ${category.description}
             </p>
-            ${ArrowLink(`category/?category=${category.id}`, category.title)}
+            ${ArrowLink(`products/?category=${category.id}`, category.title)}
         </div>
         `
     })

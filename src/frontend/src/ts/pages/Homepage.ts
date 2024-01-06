@@ -4,7 +4,6 @@ import { Footer } from "../components/Footer";
 import { HeaderWithSubHeader } from "../components/HeaderWithSubHeader";
 import { CategoryPreview } from "../components/helpers/CategoryPreview";
 import { CategorySwitcher } from "../components/helpers/CategorySwitcher";
-import { ProductsRender } from "../components/helpers/ProductsRender";
 import { type CategoryPluralInterface } from "../interfaces/CategoryInterfaces";
 import { render } from "../utils/render";
 

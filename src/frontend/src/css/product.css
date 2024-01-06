@@ -1,3 +1,7 @@
+.product-link {
+    text-decoration: none;
+}
+
 #container-product {
     display: flex;
     width: 100%;
@@ -65,5 +69,9 @@
     
     .product-price {
         font-size: 16px;
+    }
+
+    #container-product {
+        justify-content: center;
     }
 }
