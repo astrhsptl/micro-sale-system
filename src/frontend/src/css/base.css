@@ -91,6 +91,8 @@ table {
     font-weight: 500;
     line-height: 100%;
     user-select: none;
+    text-wrap: nowrap;
+    overflow-wrap: normal
 }
 
 .switcher-category__current {
@@ -297,6 +299,10 @@ header {
         justify-content: space-between;        
     }
 
+    .switcher-category {
+        font-size: 18px;
+    }
+
     #the-container__main {
         grid-template-rows: 64px auto min-content 62px;
     }
@@ -382,6 +388,10 @@ header {
         width: 80px;
         height: 80px;
     }
+
+    #container-category__switchable {
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 750px) {
@@ -435,5 +445,18 @@ header {
         width: 16px;
         will-change: contents;
         transition: all 0.3s ease-out;
+    }
+
+    .navigation-sub__home, .navigation-sub__products,
+    .navigation-sub__cart, .navigation-sub__order{
+        width: 30px;
+        height: 30px;
+    }
+
+}
+
+@media (max-width: 650px) {
+    #container-category__switchable {
+        max-width: 250px;
     }
 }

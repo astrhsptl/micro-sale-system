@@ -9,11 +9,18 @@ interface CategoryTitle{
 
 export const CategorySwitcher = async (manager: StateManager) => {
     let categoryArray = manager.getStatePosition("categories") as Array<CategoryTitle>;
+    let currentCategory = manager.getStatePosition("currentCategory");
+    
+    if (!currentCategory) {
+        manager.register("currentCategory", categoryArray[0].id);
+        currentCategory = categoryArray[0].id;
+    }
+
     let content = "";
 
     categoryArray.forEach(category => {
-        content += `<span class="switcher-category${
-            category.current == true ?
+        content += `<span data-id=${category.id} class="switcher-category${
+            currentCategory === category.id ?
             " switcher-category__current" :
         ""}">${category.title}</span>`
     });
@@ -27,7 +34,7 @@ export const CategorySwitcher = async (manager: StateManager) => {
 
     slider?.addEventListener('mousemove', (e: Event) => {
         e.preventDefault();
-        if(!mouseDown) { return; }
+        if(!mouseDown) return;
         const x = e.pageX - slider.offsetLeft;
         const scroll = x - startX;
         slider!.scrollLeft = scrollLeft - scroll;
@@ -40,7 +47,7 @@ export const CategorySwitcher = async (manager: StateManager) => {
     slider?.addEventListener('mouseup', () => {mouseDown = false});
     slider?.addEventListener('mouseleave', () => {mouseDown = false});
     slider?.addEventListener('wheel', (e: WheelEventInit) => {
-        if (e.deltaY > 0) {
+        if (e.deltaY! > 0) {
             slider.scrollLeft += 100;
         } else {
             slider.scrollLeft -= 100;
@@ -49,9 +56,9 @@ export const CategorySwitcher = async (manager: StateManager) => {
 
     categoryList.forEach(c => {
         c.addEventListener("click", (e: Event) => {
-            const target = e.target;
-            console.log(e);
-            
+            const target = e.target as HTMLElement;
+            manager.register("currentCategory", target.dataset.id!);
+            CategorySwitcher(manager);
         })
     });
 };

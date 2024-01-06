@@ -1,0 +1,61 @@
+.container-card-product {
+    width: 245px;
+    height: 267px;
+}
+
+.product-image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product-title, .product-price {
+    color: #000;
+    font-family: Montserrat;
+    font-style: normal;
+    line-height: 100%;
+}
+
+.product-title {
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+.product-price {
+    font-size: 18px;
+}
+
+@media (max-width: 1200px) {
+    .container-card-product {
+        width: 200px;
+        height: 220px;
+    }
+    
+    .product-image {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 750px) {
+    .container-card-product {
+        width: 150px;
+        height: 190px;
+    }
+    
+    .product-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .product-title {
+        font-size: 18px;
+    }
+    
+    .product-price {
+        font-size: 16px;
+    }
+}
