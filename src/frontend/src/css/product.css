@@ -1,3 +1,11 @@
+#container-product {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    gap: 10px;
+    margin: 30px 0;
+}
+
 .container-card-product {
     width: 245px;
     height: 267px;

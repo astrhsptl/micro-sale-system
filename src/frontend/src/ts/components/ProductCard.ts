@@ -1,11 +1,11 @@
-// import { render } from '../utils/render'
+import { insertableRender } from '../utils/render'
 
-export const ProductCard = () => {
-//   render(`
-//     <div class="container-card-product">
-//         <img src="./img/image 7.png" alt="" class="product-image">
-//         <p class="product-title">Coffee table</p>
-//         <p class="product-price">30$</p>
-//     </div>
-// `)
+export const ProductCard = (img: string, title: string, price: number): string => {
+    return  insertableRender(`
+    <div class="container-card-product">
+        <img src="${img}" alt="" class="product-image">
+        <p class="product-title">${title}</p>
+        <p class="product-price">${price}$</p>
+    </div>
+`)
 }

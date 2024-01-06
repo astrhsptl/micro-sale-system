@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { HeaderWithSubHeader } from "../components/HeaderWithSubHeader";
 import { CategoryPreview } from "../components/helpers/CategoryPreview";
 import { CategorySwitcher } from "../components/helpers/CategorySwitcher";
+import { ProductsRender } from "../components/helpers/ProductsRender";
 import { type CategoryPluralInterface } from "../interfaces/CategoryInterfaces";
 import { render } from "../utils/render";
 
@@ -23,10 +24,11 @@ const HomePage = async () => {
         <div id="container-category__preview"></div>
         <h2 class="page-title" id="most-popular">${dictionary.mostPopular}</h2>
         <div id="container-category__switchable"></div>
+        <div id="container-product"></div>
     `);
 
-    await CategorySwitcher(manager);
     await CategoryPreview(categories.results.slice(0, 3));
+    await CategorySwitcher(manager);
 };
 
 await HomePage();
