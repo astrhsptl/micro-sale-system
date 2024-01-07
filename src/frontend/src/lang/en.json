@@ -21,5 +21,10 @@
 
     "aboutElse": "About else",
     "projectGithub": "Project github",
-    "userAgreement": "User agreement"
+    "userAgreement": "User agreement",
+
+    "addToCart": "Add to cart",
+    "similar": "Similar",
+    "priceTitle": "Price",
+    "characteristicTitle": "Characteristics"
 }
