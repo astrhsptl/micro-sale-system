@@ -21,5 +21,10 @@
 
     "aboutElse": "О чем-то еще",
     "projectGithub": "Github проекта",
-    "userAgreement": "Пользовательское соглашение"
+    "userAgreement": "Пользовательское соглашение",
+
+    "addToCart": "В корзину",
+    "similar": "Схожее",
+    "priceTitle": "Стоимость",
+    "characteristicTitle": "Характеристики"
 }
