@@ -26,5 +26,10 @@
     "addToCart": "Add to cart",
     "similar": "Similar",
     "priceTitle": "Price",
-    "characteristicTitle": "Characteristics"
+    "characteristicTitle": "Characteristics",
+
+    "password": "Password",
+    "orCreateAccount": "or create account",
+    "invalidLoginData": "Invalid login data",
+    "incorrectEmail": "Incorrect email"
 }

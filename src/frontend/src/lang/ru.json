@@ -26,5 +26,10 @@
     "addToCart": "В корзину",
     "similar": "Схожее",
     "priceTitle": "Стоимость",
-    "characteristicTitle": "Характеристики"
+    "characteristicTitle": "Характеристики",
+
+    "password": "Пароль",
+    "orCreateAccount": "создать аккаунт",
+    "invalidLoginData": "Неверные данные",
+    "incorrectEmail": "Неверный email"
 }

@@ -5,3 +5,7 @@ export function render(elementId: string, htmlElement: string): void {
 export function insertableRender(htmlCode: string): string {
     return htmlCode;
 }
+
+export function preRender(elementId: string, htmlElement: string): void {
+    document.querySelector<HTMLElement>(`#${elementId}`)!.innerHTML += htmlElement;
+}
