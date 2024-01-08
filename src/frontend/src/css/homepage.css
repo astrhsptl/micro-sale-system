@@ -1,0 +1,18 @@
+#most-popular {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+
+    height: min-content;
+
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+    #most-popular {
+        font-size: 20px;
+    }
+}
