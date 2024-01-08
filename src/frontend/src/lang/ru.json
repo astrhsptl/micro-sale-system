@@ -1,5 +1,6 @@
 {
     "login": "Вход",
+    "logout": "Выход",
     "signIn": "Регистрация",
     "homePage": "Главная",
     "productsPage": "Товары",
@@ -27,9 +28,25 @@
     "similar": "Схожее",
     "priceTitle": "Стоимость",
     "characteristicTitle": "Характеристики",
+    "sureLogout": "Вы действительно хотите выйти?",
+    "logoutApprove": "Дя ((",
+    "logoutReject": "Не-а =)",
 
     "password": "Пароль",
     "orCreateAccount": "создать аккаунт",
     "invalidLoginData": "Неверные данные",
-    "incorrectEmail": "Неверный email"
+    "incorrectEmail": "Неверный email",
+    "incorrectPhone": "Неверный телефон",
+
+    "personalInformation": "Персональные данные",
+    "registerInformation": "Информация для аутентификации",
+    "sellerInformation": "Информация о продавце",
+    "name": "Имя",
+    "lastName": "Фамилия",
+    "phone": "Телефон",
+    "isSeller": "Вы продавец?",
+    "avatar": "Аватар",
+    "tin": "ИНН",
+    "address": "Адрес",
+    "description": "Описание компании"
 }

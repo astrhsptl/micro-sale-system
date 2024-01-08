@@ -249,6 +249,7 @@ header {
 }
 
 .button-signin__header {
+    border: 1px solid black;
     height: 37px;
     border-radius: 8px;
     background: #000;

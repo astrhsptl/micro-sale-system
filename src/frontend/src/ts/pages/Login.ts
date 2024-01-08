@@ -12,7 +12,7 @@ import { validateEmail } from "../utils/validation";
 const language = manager.getStatePosition("language");
 const dictionary = manager.getStatePosition("dictionary");
 
-const Product = async () => {
+const Login = async () => {
 
     render("main-homepage", `
         <div class="image-auth">
@@ -64,6 +64,6 @@ const Product = async () => {
 
 };
 
-await Product();
+await Login();
 HeaderWithSubHeader(language, dictionary);
 await Footer(dictionary);
