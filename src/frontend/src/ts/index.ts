@@ -24,6 +24,11 @@ const setUpLanguage = () => {
     }
 }
 
+const setUpUser = () => {
+    const currentUser = localStorage.getItem("user");
+    manager.register("user", JSON.parse(currentUser!)); 
+}
+
 const switchLanguage = (newLanguage: AvailableLanguagesType) => {
     localStorage.setItem("lang", newLanguage);
     manager.register("language", newLanguage);
@@ -31,7 +36,11 @@ const switchLanguage = (newLanguage: AvailableLanguagesType) => {
     window.location.reload()
 }
 
+setUpUser();
 setUpLanguage();
+
+console.log(manager.state);
+
 
 export {
     manager, languageConfig, switchLanguage,

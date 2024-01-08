@@ -1,5 +1,6 @@
 {
     "login": "Login",
+    "logout": "Logout",
     "signIn": "Sign in",
     "homePage": "Home",
     "productsPage": "Products",
@@ -27,9 +28,25 @@
     "similar": "Similar",
     "priceTitle": "Price",
     "characteristicTitle": "Characteristics",
+    "sureLogout": "Are you sure about logout?",
+    "logoutApprove": "Yes, i wanna",
+    "logoutReject": "Nope =)",
 
     "password": "Password",
     "orCreateAccount": "or create account",
     "invalidLoginData": "Invalid login data",
-    "incorrectEmail": "Incorrect email"
+    "incorrectEmail": "Incorrect email",
+    "incorrectPhone": "Incorrect phone",
+    
+    "personalInformation": "Personal information",
+    "registerInformation": "Register information",
+    "sellerInformation": "Seller information",
+    "name": "Name",
+    "lastName": "Lastname",
+    "phone": "Phone",
+    "isSeller": "Are you seller?",
+    "avatar": "Avatar",
+    "tin": "TIN",
+    "address": "Address",
+    "description": "Description"
 }
