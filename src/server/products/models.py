@@ -38,6 +38,7 @@ class CustomPhoto(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=63, blank=False, unique=True)
+    description = models.CharField(max_length=63, blank=True, unique=False)
     cost = models.FloatField(default=False, blank=False)
     seller_id = models.ForeignKey(Seller, verbose_name="seller_id", on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category, verbose_name="category_id", on_delete=models.CASCADE)
