@@ -10,7 +10,7 @@ from rest_framework.authentication import (
 from authsystem.models import User
 
 class JWTAuthClass(BaseAuthentication):
-    def authenticate(self, request, username=None, passwword=None, token=None):
+    def authenticate(self, request, username=None, *args, **kwargs):
         headers = get_authorization_header(request)
         email = request.data.get('email')
         username = request.data.get('username')

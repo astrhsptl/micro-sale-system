@@ -24,11 +24,11 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, username, email, password):
+    def create_superuser(self, email, password, **other_fields):
         if password is None:
             raise TypeError("Superusers must have a password.")
 
-        user = self.create_user(username, email, password)
+        user = self.create_user(email, password, **other_fields)
         user.is_superuser = True
         user.is_staff = True
         user.private_access = True
@@ -51,7 +51,7 @@ class User(AbstractBaseUser):
     
     # in common information
     avatar = models.ImageField(verbose_name="Avatar", blank=True, upload_to="user/avatar")
-    phone = models.CharField(verbose_name="Phone", max_length=30, blank=False)
+    phone = models.CharField(verbose_name="Phone", max_length=30, blank=True)
     email = models.EmailField(verbose_name="Email", max_length=100, blank=False, unique=True)
     balance = models.FloatField(verbose_name="Balance", blank=False, default=0)
 
