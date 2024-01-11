@@ -48,5 +48,6 @@
     "avatar": "Avatar",
     "tin": "TIN",
     "address": "Address",
-    "description": "Description"
+    "description": "Description",
+    "itemInCart": "Item in the cart"
 }

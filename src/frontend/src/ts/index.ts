@@ -39,9 +39,6 @@ const switchLanguage = (newLanguage: AvailableLanguagesType) => {
 setUpUser();
 setUpLanguage();
 
-console.log(manager.state);
-
-
 export {
     manager, languageConfig, switchLanguage,
     type AvailableLanguagesType, type AvailableDictionaryType
