@@ -27,9 +27,8 @@
 .cart-title-container {
     width: 100%;
 
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
     padding-bottom: 10px;
     border-bottom: 2px solid #000;
@@ -39,8 +38,8 @@
     width: 100%;
 
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: column nowrap;
+    gap: 20px;
 
     padding: 10px 0;
     border-bottom: 2px solid #000;
@@ -53,4 +52,103 @@
     flex-flow: row nowrap;
     justify-content: flex-end;
     margin-top: 20px;
+}
+
+.cart-row {
+    width: 100%;
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.cart-row-img {
+    height: 80px;
+    width: 130px;
+    object-fit: cover;
+}
+
+/*
+    Grid columns layout
+*/
+
+.grid-position-left {
+    justify-self: start;
+}
+
+.grid-position-middle {
+    justify-self: center;
+}
+
+
+.grid-position-right {
+    justify-self: end;
+}
+
+.cart-item-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-button__quantity {
+    background-color: #FFF;
+    color: #000;
+    font-family: Montserrat;
+    font-style: normal;
+    line-height: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+}
+
+.cart-button__quantity:active {
+    background-color: #000;
+    color: #FFF;
+}
+
+.cart-row-name {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.cart-item-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+@media (max-width: 810px) {
+    .title-cart {
+        font-size: 20px;
+    }
+
+    .position-title {
+        font-style: 12px;
+    }
+
+    .cart-row, .position-title {
+        font-size: 16px;
+    }
+
+    .cart-row-img {
+        height: 60px;
+        width: 80px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .cart-row, .position-title {
+        font-size: 14px;
+    }
+
+    .position-title {
+        font-size: 12px;
+    }
+
+    .cart-row-img {
+        display: none;
+    }
 }

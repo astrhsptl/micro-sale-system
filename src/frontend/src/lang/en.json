@@ -54,5 +54,6 @@
 
     "itemTitle": "Item",
     "quantityTitle": "Quantity",
-    "totalTitle": "Total"
+    "totalTitle": "Total",
+    "lowQuantity": "Quantity must be more than 1"
 }

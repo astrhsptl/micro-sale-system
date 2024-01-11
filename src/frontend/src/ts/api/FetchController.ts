@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BaseURL: string = "http://backend.localhost/api/v1/";
+export const BaseURL: string = "http://176.123.169.53/api/v1/";
 
 export default class FetchController {
     constructor(public postfixURL: string) {
@@ -34,5 +34,14 @@ export default class FetchController {
 
         return fetchResult.data
     }
+
+    async update(id: number | string, data: object) {
+        let url = `${BaseURL}${this.postfixURL}${id}/`;
+        
+        let fetchResult = await axios.patch(url, data=data);
+
+        return fetchResult.data
+    }
+
 
 }

@@ -54,5 +54,7 @@
 
     "itemTitle": "Товар",
     "quantityTitle": "Количество",
-    "totalTitle": "Итого"
+    "totalTitle": "Итого",
+
+    "lowQuantity": "Количество равно единице!"
 }
