@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev postgresql-dev
 
-COPY src/server/requirements.txt .
+COPY ./requirements.txt .
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
 
 FROM python:3.10-alpine
@@ -21,4 +21,4 @@ COPY --from=builder /app/requirements.txt .
 
 RUN pip install --no-cache /wheels/*
 
-COPY ./src/server .
+COPY ./ .
