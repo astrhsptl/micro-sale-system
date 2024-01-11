@@ -32,6 +32,7 @@ services:
       - EMAIL_PORT=465
       - REDIS_PORT=6379
       - REDIS_HOST=redis://redis:6379/0
+
     networks:
       - web
     ports:

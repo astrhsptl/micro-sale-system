@@ -13,9 +13,11 @@ class Cart(models.Model):
         default=uuid4,
         editable=False)
     user_id = models.ForeignKey(User, verbose_name="user_id", on_delete=models.CASCADE)
+    is_closed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"Cart {self.id}"
+
 
 class Order(models.Model):
     id = models.UUIDField(
@@ -30,6 +32,7 @@ class Order(models.Model):
     def __str__(self) -> str:
         return f"Order {self.id}"
 
+
 class ProductQuantity(models.Model):
     id = models.UUIDField(
         primary_key=True,
@@ -39,7 +42,6 @@ class ProductQuantity(models.Model):
     cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart")
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product")
     quantity = models.PositiveIntegerField()
-    is_closed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"Quantity {self.id}"

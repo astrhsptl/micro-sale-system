@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from products.serializers import ProductSerializer
 
 from .models import (
     Cart, Order, ProductQuantity
@@ -18,6 +19,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class ProductQuantitySerializer(serializers.ModelSerializer):
+    product = ProductSerializer(source='product_id', many=False, read_only=True) 
     class Meta:
         model = ProductQuantity
         fields = ("__all__")
