@@ -17,6 +17,7 @@ class Cart(models.Model):
     def __str__(self) -> str:
         return f"Cart {self.id}"
 
+
 class Order(models.Model):
     id = models.UUIDField(
         primary_key=True,
@@ -29,6 +30,7 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return f"Order {self.id}"
+
 
 class ProductQuantity(models.Model):
     id = models.UUIDField(
