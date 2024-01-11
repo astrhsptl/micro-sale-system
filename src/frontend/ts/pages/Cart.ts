@@ -7,7 +7,14 @@ import { CartInterface, CartPluralInterface } from "../interfaces/CartInterfaces
 import { ProductQuantityPluralInterface } from "../interfaces/ProductQuantityInterface";
 import { User } from "../interfaces/UserInterface";
 import Alert from "../utils/alert";
-import { preRender, render } from "../utils/render";
+import { render } from "../utils/render";
+
+interface Props {
+    pq_id: string | number,
+    quantity: number,
+    cart_id: string | number,
+    product_id: string | number
+}
 
 const language = manager.getStatePosition("language");
 const dictionary: AvailableDictionaryType = manager.getStatePosition("dictionary");
@@ -33,8 +40,8 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
         user_id: user.id,
         is_closed: false,
     })
-    carts = carts.results;
-    let currentCart: CartInterface = carts[0]
+    let cartsResultArray: Array<CartInterface> = carts.results;
+    let currentCart: CartInterface = cartsResultArray[0]
 
     let productList: ProductQuantityPluralInterface = await PQFetchController.fetchList(1,50, {
         cart_id: currentCart.id
@@ -60,22 +67,22 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
         </div>
     `);
 
-    const incrementButtons: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByClassName("button-increment"); 
-    const dencrementButtons: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByClassName("button-decrement");
+    const incrementButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("button-increment"); 
+    const dencrementButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("button-decrement");
 
-    Array.from(incrementButtons).forEach((btn: HTMLElement) => {
+    Array.from(incrementButtons).forEach((btn) => {
         btn.addEventListener("click", async (e: Event) => {
             let data = (e.target as HTMLElement).dataset.theme;
 
             if (data) {
-                data = JSON.parse(data)
+                let currentData: Props = JSON.parse(data)
                 const cartFetchController = new FetchController("cart/");
                 const productQUantityFetchController = new FetchController("product/quantity/");
 
-                await productQUantityFetchController.update(data?.pq_id, data={
-                    quantity: data?.quantity + 1,
-                    cart_id: data?.cart_id,
-                    product_id: data?.product_id,
+                await productQUantityFetchController.update(currentData?.pq_id, {
+                    quantity: currentData?.quantity + 1,
+                    cart_id: currentData?.cart_id,
+                    product_id: currentData?.product_id,
                 })
 
                 await preRenderRows(user, cartFetchController, productQUantityFetchController);
@@ -84,23 +91,23 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
         })
     })
 
-    Array.from(dencrementButtons).forEach((btn: HTMLElement) => {
+    Array.from(dencrementButtons).forEach((btn) => {
         btn.addEventListener("click", async (e: Event) => {
             let data = (e.target as HTMLElement).dataset.theme;
 
             if (data) {
-                data = JSON.parse(data)
+                let currentData: Props = JSON.parse(data);
                 const cartFetchController = new FetchController("cart/");
                 const productQUantityFetchController = new FetchController("product/quantity/");
 
-                if (data?.quantity > 1) {
-                    console.log(data?.quantity);
+                if (currentData?.quantity > 1) {
+                    console.log(currentData?.quantity);
                     
 
-                    await productQUantityFetchController.update(data?.pq_id, data={
-                        quantity: data?.quantity - 1,
-                        cart_id: data?.cart_id,
-                        product_id: data?.product_id,
+                    await productQUantityFetchController.update(currentData?.pq_id, {
+                        quantity: currentData?.quantity - 1,
+                        cart_id: currentData?.cart_id,
+                        product_id: currentData?.product_id,
                     })
 
                     await preRenderRows(user, cartFetchController, productQUantityFetchController);
@@ -117,6 +124,6 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
 
 }
 
-await Cart();
+Cart();
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

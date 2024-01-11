@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Compiler */
-    "outDir": "./src/js",
+    // "outDir": "/js",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,5 +22,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["."]
 }

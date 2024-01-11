@@ -6,10 +6,10 @@ export class StateManager {
     }
 
     register(name: string, data: any) {
-        this.state[name] = data;
+        (this.state as any)[name] = data;
     }
 
-    getStatePosition(name: string,): any {
-        return this.state[name];
+    getStatePosition(name: string): any {
+        return (this.state as any)[name];
     }
 }

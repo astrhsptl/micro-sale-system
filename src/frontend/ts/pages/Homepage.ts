@@ -30,4 +30,4 @@ const HomePage = async () => {
     await CategorySwitcher(manager);
 };
 
-await HomePage();
+HomePage();

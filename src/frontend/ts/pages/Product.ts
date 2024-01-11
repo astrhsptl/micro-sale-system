@@ -118,6 +118,6 @@ const Product = async () => {
     })
 };
 
-await Product();
+Product();
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

@@ -37,14 +37,17 @@ const SignIn = async () => {
         </div>
     `);
 
-    const imageInput = document.getElementById("imageProperty") as HTMLElement;
+    const imageInput = document.getElementById("imageProperty") as HTMLInputElement;
     imageInput.addEventListener("change", () => {
-        const imageLabel = document.getElementById("imageLabel") as HTMLElement;
-        const [file] = imageInput.files; 
-        
-        if (file) {
-            imageLabel.innerHTML = `<a class="fileLink" href="${URL.createObjectURL(file)}">Вы загрузили</a>`
+        const imageLabel: HTMLElement | null = document.getElementById("imageLabel");
+        if (imageInput.files != null && imageInput.files?.length >= 1) {
+            const [file] = imageInput.files;
+
+            if (imageLabel != null && file) {
+                imageLabel.innerHTML = `<a class="fileLink" href="${URL.createObjectURL(file)}">Вы загрузили</a>`
+            }
         }
+
 
     }, true)
     
@@ -83,6 +86,6 @@ const SignIn = async () => {
 
 };
 
-await SignIn();
+SignIn();
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

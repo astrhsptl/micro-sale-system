@@ -44,7 +44,7 @@ const Products = async () => {
     
 };
 
-await Products();
-await CategorySwitcher(manager);
+Products();
+CategorySwitcher(manager);
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

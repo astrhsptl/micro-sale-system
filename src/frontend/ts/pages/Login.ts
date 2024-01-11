@@ -64,6 +64,6 @@ const Login = async () => {
 
 };
 
-await Login();
+Login();
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

@@ -29,6 +29,6 @@ const Logout = async () => {
     })
 };
 
-await Logout();
+Logout();
 HeaderWithSubHeader(language, dictionary);
-await Footer(dictionary);
+Footer(dictionary);

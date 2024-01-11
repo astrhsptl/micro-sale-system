@@ -30,7 +30,7 @@ export default class FetchController {
     async create(data: object) {
         let url = `${BaseURL}${this.postfixURL}`;
         
-        let fetchResult = await axios.post(url, data=data);
+        let fetchResult = await axios.post(url, data);
 
         return fetchResult.data
     }
@@ -38,7 +38,7 @@ export default class FetchController {
     async update(id: number | string, data: object) {
         let url = `${BaseURL}${this.postfixURL}${id}/`;
         
-        let fetchResult = await axios.patch(url, data=data);
+        let fetchResult = await axios.patch(url, data);
 
         return fetchResult.data
     }

@@ -37,18 +37,18 @@ export const CategorySwitcher = async (manager: StateManager) => {
 
 
     let mouseDown = false;
-    let startX, scrollLeft;
-    const slider = document.querySelector('#container-category__switchable');
+    let startX: number, scrollLeft: number;
+    const slider: HTMLDivElement | null = document.querySelector('#container-category__switchable');
     const categoryList = Array.from(document.getElementsByClassName("switcher-category"));
 
-    slider?.addEventListener('mousemove', (e: Event) => {
+    slider?.addEventListener('mousemove', (e: MouseEvent) => {
         e.preventDefault();
         if(!mouseDown) return;
         const x = e.pageX - slider.offsetLeft;
         const scroll = x - startX;
         slider!.scrollLeft = scrollLeft - scroll;
     });
-    slider?.addEventListener('mousedown', (e: Event) => {
+    slider?.addEventListener('mousedown', (e: MouseEvent) => {
         mouseDown = true;
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
