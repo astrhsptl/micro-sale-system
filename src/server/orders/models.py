@@ -1,3 +1,4 @@
+from email.policy import default
 from uuid import uuid4
 from django.db import models
 
@@ -38,6 +39,7 @@ class ProductQuantity(models.Model):
     cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart")
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product")
     quantity = models.PositiveIntegerField()
+    is_closed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"Quantity {self.id}"
