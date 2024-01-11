@@ -18,7 +18,6 @@ export const SubHeader = (language: AvailableLanguagesType): void => {
                 `
                 <a href="/products/"><img src="${searchIcon}" alt="" class="navigation-sub__products"></a>
                 <a href="/cart/"><img src="${cartIcon}" alt="" class="navigation-sub__cart"></a>
-                <a href="/order/"><img src="${orderListIcon}" alt="" class="navigation-sub__order"></a>
                 <a href="/logout/"><img src="${logoutIcon}" alt="" class="navigation-sub__order"></a>
                 ` :
                 `

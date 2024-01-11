@@ -92,7 +92,7 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
                 data = JSON.parse(data)
                 const cartFetchController = new FetchController("cart/");
                 const productQUantityFetchController = new FetchController("product/quantity/");
-                
+
                 if (data?.quantity > 1) {
                     console.log(data?.quantity);
                     
@@ -105,7 +105,7 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
 
                     await preRenderRows(user, cartFetchController, productQUantityFetchController);
                 } else {
-                    Alert("sadkfjh");
+                    Alert(dictionary.lowQuantity);
                     await preRenderRows(user, cartFetchController, productQUantityFetchController);
                 }
                 

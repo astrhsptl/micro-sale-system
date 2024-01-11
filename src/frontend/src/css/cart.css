@@ -114,6 +114,41 @@
 }
 
 .cart-item-description {
-    overflow-x: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+@media (max-width: 810px) {
+    .title-cart {
+        font-size: 20px;
+    }
+
+    .position-title {
+        font-style: 12px;
+    }
+
+    .cart-row, .position-title {
+        font-size: 16px;
+    }
+
+    .cart-row-img {
+        height: 60px;
+        width: 80px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .cart-row, .position-title {
+        font-size: 14px;
+    }
+
+    .position-title {
+        font-size: 12px;
+    }
+
+    .cart-row-img {
+        display: none;
+    }
 }

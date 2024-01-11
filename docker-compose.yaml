@@ -1,0 +1,103 @@
+version: '3.9'
+services:
+
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.traefik.service=traefik"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+    command: --api.insecure=true --providers.docker
+    networks:
+      - web
+
+  postgresql:
+    image: postgres:15.0
+    environment:
+      - POSTGRES_USER=postgresql
+      - POSTGRES_PASSWORD=postgresql
+      - POSTGRES_DB=postgresql
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: 
+      dockerfile: ./src/server/Dockerfile
+      context: .
+    container_name: backend
+    links:
+      - postgresql:postgresql
+    depends_on:
+      - postgresql
+      - redis
+      - traefik
+      - pgadmin
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.backend.service=backend"
+      - "traefik.http.routers.backend.rule=Host(`176.123.169.53`) && (PathPrefix(`/api/`) || PathPrefix(`/admin/`) || PathPrefix(`/media/`) || PathPrefix(`/static/`))"
+      - "traefik.http.services.backend.loadbalancer.server.port=4000"
+    command: >
+      sh -c " python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py collectstatic --noinput &&
+              celery -A server worker --loglevel=INFO --detach &&
+              gunicorn server.wsgi:application --bind 0.0.0.0:4000"
+    environment:
+      - SECRET_KEY=a)&tg!@-@liw2+v!_64!v1_o+2r%e3ufl#e!n*_ar5a$q=9n!p
+      - DEBUG=1
+      - DB_NAME=postgresql
+      - DB_USER=postgresql
+      - DB_PASSWORD=postgresql
+      - DB_HOST=postgresql
+      - DB_PORT=5432
+      - EMAIL=management.weblab@bk.ru
+      - EMAIL_HOST_PASSWORD=AvW2GXLLWtGvWwtSpL6e
+      - EMAIL_PORT=465
+      - REDIS_PORT=6379
+      - REDIS_HOST=redis://redis:6379/0
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    networks:
+      - web
+    ports:
+      - "4000:4000"
+
+
+  frontend:
+    build: 
+      dockerfile: ./src/frontend/Dockerfile
+      context: .
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.frontend.service=frontend"
+      - "traefik.http.routers.frontend.rule=Host(`176.123.169.53`)"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+    restart: unless-stopped
+    networks:
+      - web
+
+volumes:
+  media_volume:
+  static_volume:
+  postgres_data:
+
+networks:
+  web:
+    external: true

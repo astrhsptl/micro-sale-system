@@ -1,6 +1,5 @@
 import logotype from "../../svg/logotype.svg";
 import cartIcon from "../../svg/cart_icon.svg";
-import orderListIcon from "../../svg/orderlist_icon.svg";
 import { render } from "../utils/render";
 import { AvailableDictionaryType, AvailableLanguagesType, manager } from "..";
 
@@ -19,7 +18,6 @@ export const Header = (language: AvailableLanguagesType, dictionary: AvailableDi
         <div class="container-button__functional">
             <span class="language-switcher" id="language-switcher-button">${language}</span>
             <a href="/cart/"><img src="${cartIcon}" alt="" class="button-cart"></a>
-            <a href="/order/"><img src="${orderListIcon}" alt="" class="button-orderlist"></a>
             ${
                 user ?
                 `<a href="/logout/"><button class="button-signin__header">${dictionary.logout}</button></a>` :
