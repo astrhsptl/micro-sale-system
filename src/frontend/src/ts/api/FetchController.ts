@@ -35,4 +35,13 @@ export default class FetchController {
         return fetchResult.data
     }
 
+    async update(id: number | string, data: object) {
+        let url = `${BaseURL}${this.postfixURL}${id}/`;
+        
+        let fetchResult = await axios.patch(url, data=data);
+
+        return fetchResult.data
+    }
+
+
 }

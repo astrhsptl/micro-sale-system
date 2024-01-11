@@ -38,8 +38,8 @@
     width: 100%;
 
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: column nowrap;
+    gap: 20px;
 
     padding: 10px 0;
     border-bottom: 2px solid #000;

@@ -6,6 +6,7 @@ import { CartRow } from "../components/helpers/CartRow";
 import { CartInterface, CartPluralInterface } from "../interfaces/CartInterfaces";
 import { ProductQuantityPluralInterface } from "../interfaces/ProductQuantityInterface";
 import { User } from "../interfaces/UserInterface";
+import Alert from "../utils/alert";
 import { preRender, render } from "../utils/render";
 
 const language = manager.getStatePosition("language");
@@ -21,14 +22,10 @@ const Cart = async () => {
         <div class="cart-quantity-container" id="rows-render-place">
         </div>
     `)
-    totalCost = await preRenderRows(user, cartFetchController, productQUantityFetchController)
-
-    const incrementButton = document.querySelector("#button-increment"); 
-    const dencrementButton = document.querySelector("#button-decrement");
-
+    await preRenderRows(user, cartFetchController, productQUantityFetchController)
 };
 
-const preRenderRows = async (user: User, cartFetchController: FetchController, PQFetchController: FetchController): Promise<number> => {
+const preRenderRows = async (user: User, cartFetchController: FetchController, PQFetchController: FetchController) => {
     let rowContent = "";
     let totalCost = 0; 
 
@@ -39,7 +36,7 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
     carts = carts.results;
     let currentCart: CartInterface = carts[0]
 
-    let productList: ProductQuantityPluralInterface = await PQFetchController.fetchList(1,1, {
+    let productList: ProductQuantityPluralInterface = await PQFetchController.fetchList(1,50, {
         cart_id: currentCart.id
     })
 
@@ -63,7 +60,61 @@ const preRenderRows = async (user: User, cartFetchController: FetchController, P
         </div>
     `);
 
-    return totalCost
+    const incrementButtons: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByClassName("button-increment"); 
+    const dencrementButtons: HTMLCollectionOf<HTMLButtonElement> = document.getElementsByClassName("button-decrement");
+
+    Array.from(incrementButtons).forEach((btn: HTMLElement) => {
+        btn.addEventListener("click", async (e: Event) => {
+            let data = (e.target as HTMLElement).dataset.theme;
+
+            if (data) {
+                data = JSON.parse(data)
+                const cartFetchController = new FetchController("cart/");
+                const productQUantityFetchController = new FetchController("product/quantity/");
+
+                await productQUantityFetchController.update(data?.pq_id, data={
+                    quantity: data?.quantity + 1,
+                    cart_id: data?.cart_id,
+                    product_id: data?.product_id,
+                })
+
+                await preRenderRows(user, cartFetchController, productQUantityFetchController);
+            }
+
+        })
+    })
+
+    Array.from(dencrementButtons).forEach((btn: HTMLElement) => {
+        btn.addEventListener("click", async (e: Event) => {
+            let data = (e.target as HTMLElement).dataset.theme;
+
+            if (data) {
+                data = JSON.parse(data)
+                const cartFetchController = new FetchController("cart/");
+                const productQUantityFetchController = new FetchController("product/quantity/");
+                
+                if (data?.quantity > 1) {
+                    console.log(data?.quantity);
+                    
+
+                    await productQUantityFetchController.update(data?.pq_id, data={
+                        quantity: data?.quantity - 1,
+                        cart_id: data?.cart_id,
+                        product_id: data?.product_id,
+                    })
+
+                    await preRenderRows(user, cartFetchController, productQUantityFetchController);
+                } else {
+                    Alert("sadkfjh");
+                    await preRenderRows(user, cartFetchController, productQUantityFetchController);
+                }
+                
+            }
+
+
+        })
+    })
+
 }
 
 await Cart();
