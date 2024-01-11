@@ -21,9 +21,16 @@ export default class FetchController {
 
     async fetchOne(id: string | number) {
         let url = `${BaseURL}${this.postfixURL}${id}/`
-        console.log(url);
         
         let fetchResult = await axios.get(url);
+
+        return fetchResult.data
+    }
+
+    async create(data: object) {
+        let url = `${BaseURL}${this.postfixURL}`;
+        
+        let fetchResult = await axios.post(url, data=data);
 
         return fetchResult.data
     }
