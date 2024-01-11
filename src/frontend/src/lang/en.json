@@ -4,6 +4,7 @@
     "signIn": "Sign in",
     "homePage": "Home",
     "productsPage": "Products",
+    "cart": "Cart",
 
     "mostPopular": "Most popular",
     
@@ -49,5 +50,9 @@
     "tin": "TIN",
     "address": "Address",
     "description": "Description",
-    "itemInCart": "Item in the cart"
+    "itemInCart": "Item in the cart",
+
+    "itemTitle": "Item",
+    "quantityTitle": "Quantity",
+    "totalTitle": "Total"
 }

@@ -4,6 +4,7 @@
     "signIn": "Регистрация",
     "homePage": "Главная",
     "productsPage": "Товары",
+    "cart": "Корзина",
 
     "mostPopular": "Самые популярные",
     
@@ -49,5 +50,9 @@
     "tin": "ИНН",
     "address": "Адрес",
     "description": "Описание компании",
-    "itemInCart": "Товар добавлен в корзину"
+    "itemInCart": "Товар добавлен в корзину",
+
+    "itemTitle": "Товар",
+    "quantityTitle": "Количество",
+    "totalTitle": "Итого"
 }
