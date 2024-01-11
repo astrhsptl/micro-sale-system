@@ -23,8 +23,8 @@ class CartViewSet(ModelViewSet):
     serializer_class = CartSerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    search_fields = ["id", "user_id"]
-    filterset_fields = ["id", "user_id"]
+    search_fields = ["id", "user_id",  "is_closed"]
+    filterset_fields = ["id", "user_id",  "is_closed"]
     tags = ["Cart"]
 
 
@@ -33,6 +33,6 @@ class ProductQuantityViewSet(ModelViewSet):
     serializer_class = ProductQuantitySerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    search_fields = ["id", "quantity", "is_closed"]
-    filterset_fields = ["id", "cart_id", "product_id", "quantity", "is_closed"]
+    search_fields = ["id", "quantity",]
+    filterset_fields = ["id", "cart_id", "product_id", "quantity",]
     tags = ["Product quantity"]
