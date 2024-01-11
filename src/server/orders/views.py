@@ -33,6 +33,6 @@ class ProductQuantityViewSet(ModelViewSet):
     serializer_class = ProductQuantitySerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    search_fields = ["id", "cart_id", "product_id", "quantity"]
-    filterset_fields = ["id", "cart_id", "product_id", "quantity"]
+    search_fields = ["id", "quantity", "is_closed"]
+    filterset_fields = ["id", "cart_id", "product_id", "quantity", "is_closed"]
     tags = ["Product quantity"]
