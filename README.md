@@ -1,8 +1,3 @@
-# Материалы
-- [Дизайн](https://www.figma.com/file/nGUP4eJGqIejCaOUPKSZF3/Untitled?type=design&node-id=0%3A1&mode=design&t=j7UqiIadjO1tcqkc-1)
-- [Системная аналитика](https://miro.com/app/board/uXjVN-4E00I=/?share_link_id=603069348521)
-
-
 # Основные настройки при деплое
 Настройка settings.py
 ```py
